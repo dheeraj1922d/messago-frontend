@@ -29,6 +29,7 @@ const Auth = () => {
       if (res.status === 202) {
         alert("Username already exists");
       } else {
+        localStorage.setItem("jwt", res.data.token);
         updateAuthName(username);
         router.replace('/chat')
       }
@@ -44,7 +45,9 @@ const Auth = () => {
         username,
         password,
       });
-
+      
+      console.log(res);
+      localStorage.setItem("jwt", res.data.token);
       updateAuthName(username);
       router.replace("/chat");
     } catch (error) {
